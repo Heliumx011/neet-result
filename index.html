@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NEET Result Verification</title>
+  <title>NEET UG 2025 – Scorecard Verification</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f8f8f8;
+      background: #f9f9f9;
       padding: 40px;
     }
     .container {
       background: #fff;
       border: 1px solid #ccc;
-      width: 450px;
+      max-width: 480px;
       margin: auto;
       padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .header {
-      font-size: 18px;
-      font-weight: bold;
       background-color: #003366;
       color: white;
       padding: 10px;
+      font-weight: bold;
+      text-align: left;
+      font-size: 16px;
     }
-    .row {
+    .captcha-box {
       margin-top: 20px;
     }
-    .captcha-img {
+    #captcha-code {
       display: inline-block;
       background: #0c1b6c;
-      color: white;
+      color: #fff;
+      padding: 8px 16px;
       font-weight: bold;
-      font-size: 22px;
-      padding: 5px 15px;
-      margin-right: 10px;
+      font-size: 20px;
       letter-spacing: 2px;
-    }
-    .refresh-icon {
-      vertical-align: middle;
-      cursor: pointer;
+      margin-right: 10px;
     }
     .submit-btn {
-      background: #1f8b4c;
-      color: white;
-      padding: 8px 16px;
+      background: #28a745;
+      color: #fff;
       border: none;
-      margin-top: 20px;
+      padding: 8px 16px;
       font-weight: bold;
+      margin-top: 20px;
       cursor: pointer;
+    }
+    #error {
+      color: red;
+      margin-top: 10px;
     }
     #result-section {
       display: none;
       margin-top: 30px;
+      padding-top: 10px;
       border-top: 1px solid #ccc;
-      padding-top: 20px;
-    }
-    .input-box {
-      padding: 8px;
-      width: 60%;
     }
   </style>
 </head>
@@ -64,49 +62,50 @@
   <div class="container">
     <div class="header">🔒 View Result</div>
 
-    <div class="row">
-      <label><strong>Enter CAPTCHA</strong> <span style="color: green">(case sensitive)</span>:</label><br>
-      <input id="captcha-input" class="input-box" type="text" placeholder="Enter code">
+    <div class="captcha-box">
+      <label><strong>Enter CAPTCHA (case sensitive):</strong></label><br>
+      <input type="text" id="captcha-input" style="padding: 6px; width: 60%;">
     </div>
 
-    <div class="row">
+    <div class="captcha-box">
       <label><strong>CAPTCHA:</strong></label><br>
-      <div class="captcha-img" id="captcha-code">K2IP6A</div>
-      <span class="refresh-icon" onclick="refreshCaptcha()">🔄</span>
+      <span id="captcha-code">K2IP6A</span>
+      <button onclick="refreshCaptcha()">🔄</button>
     </div>
 
     <button class="submit-btn" onclick="verifyCaptcha()">SUBMIT</button>
 
-    <p id="error" style="color:red;"></p>
+    <div id="error"></div>
 
     <div id="result-section">
-      <h3>Your NEET (UG) 2025 Result</h3>
+      <h3>Your NEET UG 2025 Result</h3>
       <p><strong>Total Marks:</strong> 465</p>
-      <p><strong>Percentile:</strong> 95.53</p>
-      <p><strong>Rank:</strong> 96635</p>
-      <!-- You can add your full result table here -->
+      <p><strong>Percentile:</strong> 95.5371984</p>
+      <p><strong>All India Rank:</strong> 96635</p>
+      <p><strong>Category:</strong> OBC - NCL</p>
+      <!-- You can add more data here -->
     </div>
   </div>
 
   <script>
     function verifyCaptcha() {
-      const input = document.getElementById('captcha-input').value.trim();
-      const correct = document.getElementById('captcha-code').innerText;
+      const input = document.getElementById("captcha-input").value.trim();
+      const correct = document.getElementById("captcha-code").innerText.trim();
       if (input === correct) {
-        document.getElementById('result-section').style.display = 'block';
-        document.getElementById('error').innerText = '';
+        document.getElementById("result-section").style.display = "block";
+        document.getElementById("error").innerText = "";
       } else {
-        document.getElementById('error').innerText = 'Incorrect CAPTCHA. Please try again.';
+        document.getElementById("error").innerText = "Incorrect CAPTCHA. Please try again.";
       }
     }
 
     function refreshCaptcha() {
       const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      let newCaptcha = "";
+      let newCode = "";
       for (let i = 0; i < 6; i++) {
-        newCaptcha += chars.charAt(Math.floor(Math.random() * chars.length));
+        newCode += chars.charAt(Math.floor(Math.random() * chars.length));
       }
-      document.getElementById('captcha-code').innerText = newCaptcha;
+      document.getElementById("captcha-code").innerText = newCode;
     }
   </script>
 </body>
